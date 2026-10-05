@@ -1,0 +1,89 @@
+---
+layout: page
+title: Contact
+eyebrow: Contact
+headline: Tell us the decision you’re facing.
+title_class: hero__title--narrow
+lead: A few lines is enough. We will reply to arrange a short call to confirm fit, scope and timing.
+lead_class: hero__lead--narrow
+hero_class: hero--contact
+description: Tell us the decision you’re facing. A few lines is enough. We will reply to arrange a short call to confirm fit, scope and timing.
+show_cta: false
+scripts:
+  - /assets/js/contact.js
+steps:
+  - { title: We reply to your enquiry, body: Usually to suggest a time for a short call. }
+  - { title: A short call, body: "To understand the decision and confirm fit, scope and timing." }
+  - { title: "A concise proposal, if it makes sense", body: "Covering the decision, approach, scope, dates and fee." }
+---
+<section class="band band--white">
+  <div class="container contact-body">
+    <div class="contact-form-panel">
+      <form class="contact-form" action="{{ site.enquiry.action }}" method="post" novalidate data-enquiry-form>
+        <input type="hidden" name="publicid" value="{{ site.enquiry.publicid }}">
+        <input type="hidden" name="leadsource" value="Website">
+        <input type="hidden" name="firstname" value="">
+        <input type="hidden" name="lastname" value="">
+        <h2 class="t-h3">Your enquiry</h2>
+        <label class="field">
+          <span class="field__label">Name</span>
+          <input class="field__input" type="text" name="fullname" autocomplete="name" required>
+          <span class="field__hint" data-hint="fullname" aria-live="polite"></span>
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span class="field__label">Email</span>
+            <input class="field__input" type="email" name="email" autocomplete="email" required>
+            <span class="field__hint" data-hint="email" aria-live="polite"></span>
+          </label>
+          <label class="field">
+            <span class="field__label">Phone</span>
+            <input class="field__input" type="tel" name="phone" autocomplete="tel">
+            <span class="field__hint">Optional</span>
+          </label>
+        </div>
+        <label class="field">
+          <span class="field__label">The decision you’re facing</span>
+          <textarea class="field__input" name="description" rows="6" required placeholder="For example: whether to replace our maintenance planning system, or fix the data behind the one we have."></textarea>
+          <span class="field__hint" data-hint="description" data-default="A few lines is enough." aria-live="polite">A few lines is enough.</span>
+        </label>
+        <input type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
+        <div class="form-actions">
+          <button class="btn btn--primary" type="submit">Send enquiry</button>
+          <span class="t-meta">We use your details only to reply to this enquiry.</span>
+        </div>
+        <p class="field__hint" data-form-error role="alert" hidden>Something went wrong. Please email <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+      </form>
+
+      <div class="form-thanks" role="status" data-enquiry-thanks hidden>
+        <span class="accent-rule" aria-hidden="true"></span>
+        <p class="form-thanks__title">Thank you, <span data-first-name></span>. We have your enquiry.</p>
+        <p class="t-body">We will reply to <span data-reply-email></span> to arrange a short call. If it is urgent, call {{ site.phone }}.</p>
+        <button class="btn btn--ghost" type="button" data-enquiry-reset>Send another enquiry</button>
+      </div>
+    </div>
+
+    <div class="contact-aside">
+      <div class="stack">
+        <h2 class="t-h3 next-steps__title">What happens next</h2>
+        <ol class="next-steps">
+          {%- for step in page.steps %}
+          <li class="next-step">
+            <span class="next-step__n">{{ forloop.index }}</span>
+            <div class="stack stack--4">
+              <span class="next-step__title">{{ step.title }}</span>
+              <span class="t-note">{{ step.body }}</span>
+            </div>
+          </li>
+          {%- endfor %}
+        </ol>
+      </div>
+      <div class="direct">
+        <span class="label">Or contact us directly</span>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        <a href="tel:{{ site.phone_href }}">{{ site.phone }}</a>
+        <span class="t-body">{{ site.location }}</span>
+      </div>
+    </div>
+  </div>
+</section>

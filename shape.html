@@ -1,0 +1,79 @@
+---
+layout: page
+title: Shape
+nav: what
+breadcrumb_parent: { label: What we do, url: /#what-we-do }
+headline: Turn a chosen direction into a plan your business can execute.
+lead: For leadership teams with a technology, product or transformation priority that is not yet ready to deliver. You know the direction, but the scope, business case, operating model or delivery path is not clear enough to commit resources.
+description: Turn a chosen direction into a Delivery Blueprint your business can execute, scoped around one initiative.
+meta:
+  - { label: Starting point, value: [A chosen direction] }
+  - { label: Scope, value: [One initiative and, the decisions it needs] }
+  - { label: Output, value: [Delivery Blueprint and, first 90-day priorities] }
+  - { label: Fee, value: [Agreed for the scope, fixed where it can be bounded] }
+cta_title: Which initiative do you want to move forward?
+cta_body: Tell us what has already been decided and what is preventing progress. We will arrange a short call to confirm fit, scope and timing.
+scope:
+  number: "01"
+  eyebrow: The engagement
+  title: Scoped around one initiative, and only the work it needs.
+  text: A senior-led engagement with your team. The duration is agreed after scoping, based on the initiative’s complexity, the outputs you need and access to stakeholders. We select only the activities the initiative needs, not a standard package of documents.
+  items:
+    - Confirming the business outcomes, success measures and scope boundaries
+    - Defining the target state, product direction, operating model or outline architecture
+    - Shaping the business case, including benefits, cost assumptions and evidence still needed
+    - Assessing delivery options, required capabilities, dependencies and risks
+    - Developing a sequenced roadmap with owners, approval points and milestones
+    - Aligning the sponsor and key stakeholders on the next stage
+  panel:
+    label: Typical questions
+    items:
+      - What exactly needs to change, and what is outside the scope?
+      - How do we turn this opportunity into a credible initiative?
+      - What capabilities, people, partners and investment will it require?
+      - How should the work be sequenced to create value without unnecessary risk?
+    note: Still deciding whether to proceed? The <a href="/decision-sprint/">Decision Sprint</a> may be the better place to start.
+blueprint:
+  columns: [Section, What it sets out]
+  first_width: minmax(140px, 240px)
+  highlight: 4
+  rows:
+    - [The case for change, "The business outcome, the success measures and why it matters now."]
+    - [The scope, "What is in, what is out and the target state."]
+    - [The delivery approach, "How the work should be delivered and the capabilities it requires."]
+    - [The investment, "Investment and resource assumptions, dependencies and material risks."]
+    - [The roadmap, "Accountabilities, approval points and the first 90-day priorities."]
+    - [What is still unproven, "The assumptions that remain, and the evidence needed before further commitment."]
+terms:
+  fee_title: Fee and duration
+  fee:
+    - Agreed for the specific scope before work starts. Where the scope can be clearly bounded, we agree a fixed fee for the engagement or for defined stages, plus GST where applicable.
+  excluded: [Software development, Implementation, Detailed engineering design, Exhaustive technical audits, Ongoing operational support]
+  success:
+    - Your sponsor can explain what is being proposed, why it matters, what it requires and the next approval or delivery step. You can use the Blueprint with your own team or chosen partners, without retaining us.
+    - Shape is not an automatic recommendation to implement. New evidence may justify narrowing, deferring or stopping the initiative.
+---
+<section class="band band--paper" data-surface="paper">
+  <div class="container section">
+    {% include scope.html s=page.scope %}
+  </div>
+</section>
+
+<section class="band band--white">
+  <div class="container section stack stack--40">
+    {% include section-intro.html number="02" eyebrow="The Delivery Blueprint" title="A practical blueprint, proportionate to the initiative." text="Supporting outputs, such as a business case, product roadmap, operating model or outline architecture, are included only where agreed. Estimates separate what has been validated from what is still assumed." %}
+    {% include data-table.html table=page.blueprint %}
+  </div>
+</section>
+
+<section class="band band--paper" data-surface="paper">
+  <div class="container section">
+    {% include terms.html terms=page.terms %}
+  </div>
+</section>
+
+<section class="band band--white">
+  <div class="container section">
+    {% include other-services.html current="shape" %}
+  </div>
+</section>

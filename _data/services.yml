@@ -1,0 +1,28 @@
+# The three services. Used on Home, in the footer and in "Other ways to work with us".
+- key: decide
+  area: Decide
+  name: Decision Sprint
+  url: /decision-sprint/
+  when: When the direction is unresolved
+  home_body: Independent advice on an important business or technology choice. The Decision Sprint gives you a clear recommendation in two weeks.
+  output: A Decision Brief and a 90-day path forward
+  link: About the Decision Sprint
+  other_body: Two weeks to a clear recommendation on one important decision, and a practical path forward.
+- key: shape
+  area: Shape
+  name: Shape
+  url: /shape/
+  when: When a chosen direction needs a plan
+  home_body: Define what needs to change, what it should achieve and how to move it forward, scoped around one initiative.
+  output: A Delivery Blueprint with first 90-day priorities
+  link: About Shape
+  other_body: Turn a chosen direction into a Delivery Blueprint your business can execute.
+- key: deliver
+  area: Deliver
+  name: Deliver
+  url: /deliver/
+  when: When the plan needs senior leadership
+  home_body: Senior leadership or delivery oversight through a defined mandate, working alongside your team and partners.
+  output: Active leadership, progress reporting and a practical handover
+  link: About Deliver
+  other_body: Senior leadership or delivery oversight to turn an agreed plan into measurable progress.

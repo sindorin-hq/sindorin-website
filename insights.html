@@ -1,0 +1,56 @@
+---
+layout: page
+title: Insights
+nav: insights
+eyebrow: Insights
+headline: Notes on making technology decisions that hold up.
+lead: Short pieces for leaders weighing an investment, an opportunity or an initiative that has lost its way.
+description: Short pieces for leaders weighing an investment, an opportunity or an initiative that has lost its way.
+topics: [Investment decisions, Stalled initiatives, AI and automation]
+scripts:
+  - /assets/js/insights.js
+---
+{%- assign featured = site.posts.first %}
+<section class="band band--paper" data-surface="paper">
+  <div class="container insights-body stack stack--56" data-insights>
+    <div class="topic-tabs" role="tablist" aria-label="Filter by topic">
+      <button type="button" class="topic-tab" role="tab" aria-selected="true" data-topic="All">All</button>
+      {%- for topic in page.topics %}
+      <button type="button" class="topic-tab" role="tab" aria-selected="false" data-topic="{{ topic }}">{{ topic }}</button>
+      {%- endfor %}
+    </div>
+
+    {%- if featured %}
+    <a class="featured" href="{{ featured.url | relative_url }}" data-featured>
+      <div class="featured__head">
+        <span class="label">Latest</span>
+        <span class="featured__title">{{ featured.title }}</span>
+      </div>
+      <div class="featured__side">
+        <span class="featured__excerpt">{{ featured.excerpt | strip_html | strip }}</span>
+        <div class="post-meta">
+          {%- if featured.topic %}<span>{{ featured.topic }}</span>{% endif %}
+          <span>{{ featured.date | date: "%-d %B %Y" }}</span>
+          {%- if featured.reading_minutes %}<span>{{ featured.reading_minutes }} min read</span>{% endif %}
+        </div>
+      </div>
+    </a>
+    {%- endif %}
+
+    <div class="post-list">
+      {%- for post in site.posts %}
+      <a class="post-row" href="{{ post.url | relative_url }}" data-topic="{{ post.topic }}"{% if forloop.first %} data-latest hidden{% endif %}>
+        <div class="post-row__meta">
+          <span>{{ post.date | date: "%-d %B %Y" }}</span>
+          {%- if post.topic %}<span>{{ post.topic }}</span>{% endif %}
+        </div>
+        <div class="post-row__main">
+          <span class="t-h3">{{ post.title }}</span>
+          <span class="post-row__excerpt">{{ post.excerpt | strip_html | strip }}</span>
+        </div>
+      </a>
+      {%- endfor %}
+      <p class="post-list__empty" data-empty{% if site.posts.size > 1 %} hidden{% endif %}>No other articles on this topic yet.</p>
+    </div>
+  </div>
+</section>

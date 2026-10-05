@@ -1,0 +1,5 @@
+{%- comment -%} Params: label, text {%- endcomment -%}
+<aside class="callout">
+  {%- if include.label %}{% include eyebrow.html label=include.label %}{% endif %}
+  <p class="callout__text">{{ include.text }}</p>
+</aside>

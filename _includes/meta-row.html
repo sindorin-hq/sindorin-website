@@ -1,0 +1,9 @@
+{%- comment -%} Params: items (label + value, value may be a list of lines), columns (3 or 4) {%- endcomment -%}
+<dl class="meta-row{% if include.columns == 3 %} meta-row--3{% endif %}">
+  {%- for item in include.items %}
+  <div class="meta-row__item">
+    <dt class="label">{{ item.label }}</dt>
+    <dd class="meta-row__value">{% for line in item.value %}<span>{{ line }}</span>{% endfor %}</dd>
+  </div>
+  {%- endfor %}
+</dl>

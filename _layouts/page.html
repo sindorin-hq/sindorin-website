@@ -1,43 +1,33 @@
 ---
 layout: default
 ---
-    <!-- Page Title
-		============================================= -->
-		<section class="page-title bg-transparent">
-			<div class="container">
-				<div class="page-title-row">
-
-					<div class="page-title-content">
-						<h1>{{ page.title | escape }}</h1>
-					</div>
-
-				</div>
-			</div>
-		</section><!-- .page-title end -->
-
-		<!-- Content
-		============================================= -->
-		<section id="content">
-			<div class="content-wrap">
-				<div class="container">
-
-					<!-- Posts
-					============================================= -->
-					<div id="posts" class="row grid-container gutter-30">
-
-						<div class="entry col-12">
-							<div class="grid-inner">
-								<div class="entry-image">
-									<img src="{{ "/assets/images/misc/about-us.jpg" | relative_url }}" alt="Standard Post with Image">
-								</div>
-								<div class="entry-content">
-									{{ content }}
-								</div>
-							</div>
-						</div>
-
-					</div><!-- #posts end -->
-
-				</div>
-			</div>
-		</section><!-- #content end -->
+{%- comment -%}
+  Page hero driven by front matter:
+    eyebrow            muted eyebrow label (How we work, Insights, Contact)
+    breadcrumb_parent  { label, url } for service pages; the page title is the current crumb
+    headline, lead, meta (MetaRow items)
+    hero_size          display | page (default)
+    hero_class         extra classes on the hero container
+    title_class        extra classes on the h1
+{%- endcomment -%}
+<section class="band band--dark" data-surface="dark">
+  <div class="container hero{% if page.meta %} hero--meta{% endif %} {{ page.hero_class }} stack stack--28">
+    <span class="accent-rule" aria-hidden="true"></span>
+    {%- if page.breadcrumb_parent %}
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ page.breadcrumb_parent.url | relative_url }}">{{ page.breadcrumb_parent.label }}</a>
+      <span aria-current="page">{{ page.title }}</span>
+    </nav>
+    {%- elsif page.eyebrow %}
+    {% include eyebrow.html label=page.eyebrow tone="muted" %}
+    {%- endif %}
+    <h1 class="{% if page.hero_size == 'display' %}t-display{% else %}t-page{% endif %} hero__title {{ page.title_class }}">{{ page.headline | default: page.title }}</h1>
+    {%- if page.lead %}
+    <p class="t-lead {{ page.lead_class }}">{{ page.lead }}</p>
+    {%- endif %}
+    {%- if page.meta %}
+    <div class="hero__meta">{% include meta-row.html items=page.meta %}</div>
+    {%- endif %}
+  </div>
+</section>
+{{ content }}

@@ -1,217 +1,78 @@
 ---
 layout: default
-header_class: transparent-header
 ---
+{%- assign home = page.home %}
+<section class="band band--dark" data-surface="dark">
+  <div class="container home-hero">
+    <div class="home-hero__copy">
+      <div class="stack stack--28">
+        <span class="accent-rule" aria-hidden="true"></span>
+        <h1 class="t-display">{{ home.headline }}</h1>
+        <p class="t-lead home-hero__lead">{{ home.lead }}</p>
+      </div>
+      <div class="actions">
+        {% include button.html variant="primary" href="/contact/" label="Bring us the decision" %}
+        {% include button.html variant="ghost" href="/how-we-work/" label="How we work" %}
+      </div>
+    </div>
+    <div class="home-hero__visual">
+      <canvas data-sindorin-sphere aria-hidden="true"></canvas>
+    </div>
+  </div>
+</section>
 
-<!-- <div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+<div class="band band--paper" data-surface="paper">
+  <div class="container home-meta">
+    {% include meta-row.html items=home.meta %}
+  </div>
 
-  {{ content }}
+  <section id="what-we-do">
+    <div class="container section stack stack--56">
+      {% include section-intro.html number="01" eyebrow="What we do" title=home.what.title text=home.what.text %}
+      <div class="service-grid">
+        {%- for service in site.data.services %}
+        <a class="service-card" href="{{ service.url | relative_url }}">
+          <span class="label">{{ service.when }}</span>
+          <span class="service-card__area">{{ service.area }}</span>
+          <span class="t-body">{{ service.home_body }}</span>
+          <span class="service-card__output">
+            <span class="t-meta">You receive</span>
+            <strong>{{ service.output }}</strong>
+          </span>
+          <span class="service-card__link">{{ service.link }}</span>
+        </a>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+</div>
 
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
+<section class="band band--white">
+  <div class="container section stack stack--48">
+    <div class="head-row">
+      <div class="stack stack--20">
+        {% include eyebrow.html number="02" label="How we work" %}
+        <h2 class="t-section">See. Decide. Act.</h2>
+      </div>
+      {% include button.html variant="ghost" href="/how-we-work/" label="More on our approach" %}
+    </div>
+    {% include point-grid.html items=home.phases rule="phases" %}
+  </div>
+</section>
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-  {%- endif -%}
-
-</div> -->
-
-<!-- Slider
-		============================================= -->
-		<section id="slider" class="slider-element swiper_wrapper min-vh-60 min-vh-md-100 include-header" data-loop="true">
-			<div class="slider-inner">
-				<div class="swiper-container swiper-parent">
-					<div class="swiper-wrapper">
-            {% for slider in page.sliders %}
-            <div class="swiper-slide dark">
-							<div class="container">
-								<div class="slider-caption slider-caption-center">
-									<div>
-										<h2 class="font-primary text-transform-none">{{ slider.title }}</h2>
-										<p class="fw-light font-primary d-none d-sm-block">{{ slider.content }}</p>
-										<a href="#" class="button button-rounded button-large text-transform-none ls-0 font-primary">Get Started</a>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide-bg" style="background-image: url('assets/images/slider/{{ slider.image }}');"></div>
-						</div>
-            {% endfor %}
-          </div>
-					<!-- Slider Arrows
-					============================================= -->
-					<div class="slider-arrow-left" class="bg-transparent"><i class="bi-arrow-left"></i></div>
-					<div class="slider-arrow-right" class="bg-transparent"><i class="bi-arrow-right"></i></div>
-				</div>
-
-				<a href="#" data-scrollto="#content" class="one-page-arrow dark"><i class="bi-chevron-down infinite animated fadeInDown"></i></a>
-			</div>
-
-		</section>
-
-		<!-- Content
-		============================================= -->
-		<section id="content">
-
-			<div class="content-wrap pb-0" style="z-index: 1;">
-
-				<div class="container mt-5">
-
-					<!-- What We Do
-					============================================= -->
-					<div class="heading-block text-center border-0" data-heading="W">
-						<h3>What We Do</h3>
-					</div>
-					<div class="row">
-						<div class="text-center col-lg-8 offset-lg-2 mb-5">
-							<h3 class="text-rotater font-secondary" data-separator="," data-rotate="fadeInRight" data-speed="3500">{{ page.what }}</h3>
-						</div>
-
-						<div class="clear"></div>
-
-						<!-- Features colomns
-						============================================= -->
-						<div class="row g-4">
-              				{% for service in page.services %}
-							<div class="col-lg-4">
-								<div class="feature-box media-box fbox-bg">
-									<div class="fbox-media">
-										<a href="#"><img src="{{ service.image }}" alt="Featured Box Image"></a>
-									</div>
-									<div class="fbox-content fbox-content-lg">
-										<h3 class="text-transform-none ls-0 fw-semibold">{{ service.title }}<span class="subtitle font-secondary fw-light ls-0">{{ service.content }}</span></h3>
-										<a href="{{ service.url | relative_url }}" class="button-link border-0 color">Read More</a>
-									</div>
-								</div>
-							</div>
-              				{% endfor %}
-
-						</div>
-					</div>
-				</div>
-
-				<!-- How We Work
-				============================================= -->
-				<div class="section bg-transparent">
-					<div class="container">
-						<div class="heading-block mb-6 text-center border-0" data-heading="W">
-							<h3 class="text-transform-none ls-0">How We Work</h3>
-						</div>
-					</div>
-
-					<!-- How We Work - Carousel
-					============================================= -->
-					<div id="oc-features" class="owl-carousel owl-carousel-full image-carousel carousel-widget customjs">
-						<div class="oc-item">
-							<div class="row cleafix">
-								<div class="col-xl-8">
-									<img src="assets/images/carousel/our-approach.jpg" alt="Image">
-								</div>
-								<div class="col-xl-4" style="padding: 20px 0 0 20px;">
-									<h3>C-Suite as a Service Approach.</h3>
-									<p>At Sindorin, we don’t just offer leadership; we extend our executive team as part of your own. As a boutique consultancy, we are committed to understanding your unique challenges and goals, providing C-suite services (CEO, CIO, CTO) that are responsive and tailored to your needs.</p>
-									<a href="#" class="button-link">Read More</a>
-								</div>
-							</div>
-						</div>
-						<div class="oc-item">
-							<div class="row cleafix">
-								<div class="col-xl-8">
-									<img src="assets/images/carousel/our-mining-approach.jpg" alt="Image">
-								</div>
-								<div class="col-xl-4" style="padding: 20px 0 0 20px;">
-									<h3>Mining FID Approach.</h3>
-									<p>We're technologists who understand running businesses. We've lead transformations at global miners, advised for the world's best technology providers, been CEOs, CIOs and CTOs. Our collective intelligence is yours.</p>
-									<a href="#" class="button-link">Read More</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				
-
-				<!-- Parallax Area
-				============================================= -->
-				<div class="section parallax mt-6 mb-0 border-top-0">
-					<img src="assets/images/sections/2.jpg" class="parallax-bg" style="height: 120%; top:-15%;">
-					<div class="container">
-
-						<div class="row col-mb-50 cleafix">
-							<div class="col-md-6 dark" style="padding-left: 60px;">
-								<div class="heading-block mb-4 border-0">
-									<h3 class="text-transform-none" style="font-size: 46px; font-weight: 700; letter-spacing: -2px; line-height: 58px">Our Customers.</h3>
-								</div>
-								<p>At Sindorin, our clients' success stories speak volumes about our commitment to our personalized and responsive approach. We take pride in the strong partnerships we've cultivated across various industries, from innovative startups to established mining firms</p>
-                <p>Here are some references from satisfied clients who have experienced firsthand the transformation Sindorin can bring. Their words reflect not only our professional expertise but our dedication to making their goals our mission.</p>
-							</div>
-
-							<!-- Testimonials slider
-							============================================= -->
-							<div class="col-md-5 offset-md-1">
-								<h4 class="dark">Testimonials</h4>
-								<div class="fslider testimonial bg-white p-5 rounded" data-animation="slide" data-arrows="false">
-									<div class="flexslider">
-										<div class="slider-wrap">
-											<div class="slide">
-												<p class="mb-4 font-primary">The team at Sindorin have provided their CEO as a Service during a period of change and worked tireless with the board and the organisation to implement cultural change as well as a strategic review and pivot for our products.</p>
-												<h4 class="h6 mb-1 fw-bold text-uppercase ls-1">SM</h4>
-												<small class="text-muted d-block mb-3">Chairman</small>
-											</div>
-											<div class="slide">
-												<p class="mb-4 font-primary">An independent review of our software platform was undertaken using Sindorin's CTO as a Service, the discretion and findings were exceptional.</p>
-												<h4 class="h6 mb-1 fw-bold text-uppercase ls-1">AC</h4>
-												<small class="text-muted d-block mb-3">Legal Director</small>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-				<!-- Outcomes 
-				============================================= -->
-				<div class="section bg-transparent pb-0 mb-0">
-					<div class="container">
-						<div class="row">
-
-							<div class="col-lg-5 order-lg-12">
-								<div class="device-xl device-md mt-6"></div>
-								<h3 class="mb-0" style="font-size: 40px;">Great Outcomes.</h3>
-								<h3 class="fw-light ls-4" style="font-size: 15px; color: #999;">Delivered by Sindorin</h3>
-								<p>At Sindorin, we measure our success by the impact we make on your business. We're not just advisors; we're partners committed to delivering meaningful results. Achieving great outcomes isn't just our goal; it's our promise to you.</p>
-								<p>Trust Sindorin to transform challenges into opportunities, propelling your business towards sustainable growth and success.</p>
-								<a href="#" class="button-link mb-5">Read More</a>
-							</div>
-
-							<div class="col-lg-7 order-lg-1">
-								<div style="position: relative; margin-bottom: 0;" class="overflow-hidden" data-height-xl="520" data-height-lg="520" data-height-md="520" data-height-sm="500" data-height-xs="300">
-									<img class="man" src="assets/images/sections/man.jpg" style="position: absolute; top: 0; left: auto;" alt="Chrome">
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-		</section><!-- #content end -->
+<section class="band band--paper" data-surface="paper">
+  <div class="container section stack stack--40">
+    <div class="head-row">
+      <div class="stack stack--20">
+        {% include eyebrow.html number="03" label="Insights" %}
+        <h2 class="t-h2">Recent thinking</h2>
+      </div>
+      {% include button.html variant="ghost" href="/insights/" label="All insights" %}
+    </div>
+    <div class="post-grid">
+      {%- for post in site.posts limit: 3 %}
+      {% include post-card.html post=post %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>

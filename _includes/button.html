@@ -1,0 +1,2 @@
+{%- comment -%} Params: variant (primary|secondary|ghost), size (sm), href, label {%- endcomment -%}
+<a class="btn btn--{{ include.variant | default: 'primary' }}{% if include.size == 'sm' %} btn--sm{% endif %}" href="{{ include.href | relative_url }}">{{ include.label }}</a>

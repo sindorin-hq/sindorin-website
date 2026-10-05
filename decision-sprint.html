@@ -1,0 +1,97 @@
+---
+layout: page
+title: Decision Sprint
+nav: what
+breadcrumb_parent: { label: What we do, url: /#what-we-do }
+headline: Clarity on an important technology decision, and a practical path forward.
+lead: A focused, senior-led engagement for leaders facing a technology investment, an AI or automation opportunity, or an initiative that has stalled.
+description: A focused, senior-led engagement that gives you a clear recommendation on one important technology decision in two weeks.
+meta:
+  - { label: Duration, value: [Two calendar weeks] }
+  - { label: Effort, value: [About four days, senior-led] }
+  - { label: Output, value: [Decision Brief and, a 90-day path forward] }
+  - { label: Fee, value: ["Fixed, AUD $7,500", plus GST where applicable] }
+cta_title: Which decision would you bring?
+cta_body: Describe the decision in a few lines. We will arrange a short call to confirm fit, scope and timing.
+other_bodies:
+  shape: Turn a chosen direction into a Delivery Blueprint your business can execute. A Decision Sprint is not a prerequisite.
+scope:
+  number: "01"
+  eyebrow: The scope
+  title: One decision, examined properly, in two calendar weeks.
+  text: About four days of senior effort, spread across two weeks from an agreed kickoff and receipt of the information we need. It starts with the business question, not a preferred technology.
+  items:
+    - One clearly defined business problem, opportunity or investment decision
+    - Up to four stakeholder interviews
+    - Targeted review of an agreed set of relevant material
+    - Analysis of the realistic options and trade-offs
+    - One decision workshop
+    - Preparation of the Decision Brief
+  panel:
+    label: Typical questions
+    items:
+      - Should we invest in this?
+      - Where could AI or automation genuinely improve the business?
+      - Why is this initiative not delivering?
+      - Should we build, buy or partner?
+      - Is this opportunity commercially worthwhile?
+      - How do we turn an idea into something executable?
+approach:
+  - { title: See, body: "What is the real business problem or opportunity, and what is realistically possible?" }
+  - { title: Decide, body: "What are the credible options and trade-offs, and which direction do we recommend?" }
+  - { title: Act, body: "What should happen next, and what are the priorities for the first 90 days?" }
+brief:
+  columns: [Section, The question it answers]
+  first_width: minmax(140px, 220px)
+  highlight: 3
+  rows:
+    - [The opportunity, "What are we trying to achieve, why does it matter and what has changed?"]
+    - [The current reality, "Which operational, organisational, technical or commercial constraints matter?"]
+    - [The options, "What are the credible choices, including the status quo where appropriate?"]
+    - [The judgement, "What do we recommend and why? What evidence and assumptions underpin it?"]
+    - [The path forward, "What needs to happen next, who needs to be involved and what needs to be proven?"]
+    - [The first 90 days, "The immediate priorities, owners, dependencies and first measurable milestones."]
+terms:
+  fee_title: Fee and terms
+  key_figure:
+    label: Fixed fee
+    value: AUD $7,500
+    caption: Plus GST where applicable. 50% before kickoff, 50% on delivery, payable within seven days.
+  excluded: [Implementation, Software development, Exhaustive technical audits, Detailed engineering design, Open-ended operational support]
+  success:
+    - The Sprint succeeds when you can make a better decision and act on it, with or without us. It is not designed to lead to a larger consulting programme.
+---
+<section class="band band--paper" data-surface="paper">
+  <div class="container section">
+    {% include scope.html s=page.scope %}
+  </div>
+</section>
+
+<section class="band band--white">
+  <div class="container section stack stack--48">
+    <div class="stack stack--20 measure-760">
+      {% include eyebrow.html number="02" label="The approach" %}
+      <h2 class="t-section">The answer may be to invest, simplify, defer or stop.</h2>
+    </div>
+    {% include point-grid.html items=page.approach rule="phases" %}
+  </div>
+</section>
+
+<section class="band band--paper" data-surface="paper">
+  <div class="container section stack stack--40">
+    {% include section-intro.html number="03" eyebrow="The Decision Brief" title="A concise brief that ends with the first 90 days." text="The principal output, presented at the decision workshop and written so your team can act on it without us." %}
+    {% include data-table.html table=page.brief %}
+  </div>
+</section>
+
+<section class="band band--white">
+  <div class="container section">
+    {% include terms.html terms=page.terms %}
+  </div>
+</section>
+
+<section class="band band--paper" data-surface="paper">
+  <div class="container section">
+    {% include other-services.html current="decide" %}
+  </div>
+</section>

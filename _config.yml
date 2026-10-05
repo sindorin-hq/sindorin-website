@@ -1,59 +1,42 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+# Site settings. Restart `bundle exec jekyll serve` after editing this file.
 
 title: Sindorin
-company: Sindorin pty ltd
-phone: +61 414 674 830
+company: Sindorin Pty Ltd
+abn: 70 670 713 738
 author: Jake Stride
-tagline: Transforming Businesses with Experienced C-Suite Leadership and Advanced AI Advisory.
+tagline: See what's possible. Make it matter.
+description: Sindorin helps industrial businesses turn technology opportunities into commercial results.
 email: info@sindorin.com
-address: PO Box 44, Floreat, WA 6014, Australia
-description: >- # this means to ignore newlines until "baseurl:"
-  Transforming Businesses with Experienced C-Suite Leadership and Advanced AI Advisory.
-baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://www.sindorin.com" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: sindorin
-github_username:  jekyll
+phone: +61 414 674 830
+phone_href: "+61414674830"
+location: Perth, Western Australia
+lang: en-AU
+timezone: Australia/Perth
+url: "https://www.sindorin.com"
+baseurl: ""
 google_analytics: G-FC7KSLMEJE
 
-# Build settings
-#theme: minima
+# Enquiry form (vtiger webform)
+enquiry:
+  action: https://sindorin.od2.vtiger.com/modules/Webforms/capture.php
+  publicid: 48badca9f7f2cc28987a0a378a4aba40
+
+permalink: /insights/:title/
+
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      nav: insights
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/

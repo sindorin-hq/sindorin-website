@@ -1,0 +1,23 @@
+{%- comment -%} Numbered section with scope list at left and a questions panel at right. Params: s (number, eyebrow, title, text, items, panel: label, items, note) {%- endcomment -%}
+{%- assign s = include.s %}
+<div class="scope-row">
+  <div class="scope-row__main stack stack--24">
+    {% include eyebrow.html number=s.number label=s.eyebrow %}
+    <h2 class="t-section">{{ s.title }}</h2>
+    <p class="t-body measure-34">{{ s.text }}</p>
+    <ul class="scope-list">
+      {%- for item in s.items %}
+      <li>{{ item }}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+  <div class="scope-row__aside panel">
+    <span class="label">{{ s.panel.label }}</span>
+    {%- for item in s.panel.items %}
+    <p class="panel__item">{{ item }}</p>
+    {%- endfor %}
+    {%- if s.panel.note %}
+    <p class="panel__note">{{ s.panel.note }}</p>
+    {%- endif %}
+  </div>
+</div>

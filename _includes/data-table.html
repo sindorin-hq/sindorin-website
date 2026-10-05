@@ -1,0 +1,13 @@
+{%- comment -%} Params: table (columns: [first, second], first_width, rows: [[a, b]], highlight: zero-based row index) {%- endcomment -%}
+{%- assign t = include.table %}
+<div class="data-table" role="table" style="--cols: {{ t.first_width | default: 'minmax(140px, 220px)' }} minmax(0, 1fr)">
+  <div class="data-table__row data-table__row--head" role="row">
+    {%- for col in t.columns %}<span role="columnheader">{{ col }}</span>{% endfor %}
+  </div>
+  {%- for row in t.rows %}
+  {%- assign i = forloop.index0 %}
+  <div class="data-table__row{% if t.highlight == i %} data-table__row--highlight{% endif %}" role="row">
+    {%- for cell in row %}<span role="cell">{{ cell }}</span>{% endfor %}
+  </div>
+  {%- endfor %}
+</div>

@@ -1,25 +1,17 @@
 ---
+layout: page
+title: Page not found
 permalink: /404.html
-layout: default
+eyebrow: Page not found
+headline: We could not find that page.
+lead: It may have moved when the site was updated. Start from the home page, or tell us what you were looking for.
+sitemap: false
 ---
-
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>
+<section class="band band--paper" data-surface="paper">
+  <div class="container section">
+    <div class="actions">
+      {% include button.html variant="primary" href="/" label="Go to the home page" %}
+      {% include button.html variant="ghost" href="/contact/" label="Contact us" %}
+    </div>
+  </div>
+</section>

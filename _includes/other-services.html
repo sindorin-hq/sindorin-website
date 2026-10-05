@@ -1,0 +1,15 @@
+{%- comment -%} The two services other than the current page. Params: current (service key) {%- endcomment -%}
+<div class="stack stack--40">
+  <h2 class="t-h2">Other ways to work with us</h2>
+  <div class="other-grid">
+    {%- for service in site.data.services %}
+    {%- unless service.key == include.current %}
+    <a class="other-card" href="{{ service.url | relative_url }}">
+      <span class="label">{{ service.when }}</span>
+      <span class="other-card__name">{{ service.name }}</span>
+      <span class="t-body">{{ page.other_bodies[service.key] | default: service.other_body }}</span>
+    </a>
+    {%- endunless %}
+    {%- endfor %}
+  </div>
+</div>

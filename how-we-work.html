@@ -1,0 +1,118 @@
+---
+layout: page
+title: How we work
+nav: how
+eyebrow: How we work
+headline: See. Decide. Act.
+hero_size: display
+title_class: hero__title--wide
+lead: We start with the business, not a preferred technology. What are you trying to achieve? What is holding you back? Which decisions will genuinely move you forward?
+description: We start with the business, not a preferred technology. See the problem clearly, decide with the trade-offs in view, and act on a practical path forward.
+phases:
+  - key: see
+    num: "01"
+    title: See
+    lead: Understand the business problem, the opportunity, the current environment and what is realistically possible.
+    body: Spotting a trend is only the beginning. The value lies in understanding what it changes, where it creates an advantage and what it will take to make it useful for your people, assets and systems.
+    list_label: Questions we start with
+    list:
+      - What are you trying to achieve?
+      - What is holding you back?
+      - What could you do differently?
+      - Which decisions will genuinely move you forward?
+  - key: decide
+    num: "02"
+    title: Decide
+    lead: Separate the interesting from the valuable, and make the trade-offs visible.
+    body: We weigh the credible options against commercial value, operational reality, complexity, risk and organisational readiness. Maintaining the status quo is one of the options we test.
+    list_label: Valid answers include
+    list:
+      - Invest, or change direction
+      - Simplify what already exists
+      - Defer until the conditions are right
+      - Stop an investment that no longer makes sense
+      - Undertake a deeper piece of work
+  - key: act
+    num: "03"
+    title: Act
+    lead: Connect the decision to achievable next steps and measurable outcomes.
+    body: Clarity is not the finish line. It should lead to a decision you can stand behind, an investment with a clear purpose and a team that understands the priorities.
+    list_label: What you leave with
+    list:
+      - Clear priorities and owners
+      - Dependencies and what still needs to be proven
+      - Immediate next steps and the first 90 days
+      - First measurable milestones
+journey:
+  - You have an important decision, opportunity or point of change.
+  - A focused engagement, such as the Decision Sprint, brings it to clarity.
+  - You have a clear recommendation and a path forward.
+  - Where more capability is genuinely needed, Shape or Deliver can take it forward.
+  - Each further engagement is separately justified and scoped.
+principles:
+  - We start with the business, not the technology.
+  - We stay independent of any platform, vendor or implementation outcome.
+  - We make commercial and operational trade-offs visible.
+  - We will recommend simplifying, deferring or stopping when that is the right answer.
+  - We leave you better equipped to act, not dependent on us.
+  - Engagements are senior-led, focused and proportionate to the decision.
+---
+<section class="band band--paper" data-surface="paper">
+  <div class="container section stack stack--phases">
+    {%- for phase in page.phases %}
+    <div class="phase-block phase-block--{{ phase.key }}">
+      <div class="phase-block__head">
+        <span class="t-num">{{ phase.num }}</span>
+        <h2 class="phase-block__title">{{ phase.title }}</h2>
+      </div>
+      <div class="phase-block__body">
+        <p class="phase-block__lead">{{ phase.lead }}</p>
+        <p class="phase-block__text t-body">{{ phase.body }}</p>
+        <div class="rule-list">
+          <span class="label">{{ phase.list_label }}</span>
+          <ul>
+            {%- for item in phase.list %}
+            <li>{{ item }}</li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="band band--white">
+  <div class="container section stack stack--48">
+    {% include section-intro.html eyebrow="How engagements fit together" title="Every engagement has to be worth it on its own." text="You can start at whichever point fits: Decide when the direction is unresolved, Shape when a chosen direction needs a workable plan, and Deliver when you need senior support to execute. No engagement is a paid sales exercise for the next." %}
+    <ol class="step-grid">
+      {%- for step in page.journey %}
+      <li class="step">
+        <span class="t-num">{{ forloop.index }}</span>
+        <span class="step__text">{{ step }}</span>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="band band--paper" data-surface="paper">
+  <div class="container section side-row">
+    <div class="side-row__head stack stack--20">
+      {% include eyebrow.html label="Principles" tone="muted" %}
+      <h2 class="t-h2">What you can expect from us</h2>
+    </div>
+    <ol class="side-row__body numbered">
+      {%- for principle in page.principles %}
+      <li><span class="numbered__n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span>{{ principle }}</span></li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="band band--white">
+  <div class="container section side-row side-row--tight">
+    <h2 class="side-row__head label position__label">Our position</h2>
+    <p class="side-row__body t-statement">Our role is not to make every opportunity sound compelling. It is to help you distinguish the promising from the practical, and recognise when something can be both.</p>
+  </div>
+</section>

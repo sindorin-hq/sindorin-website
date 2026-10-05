@@ -1,27 +1,64 @@
 ---
 layout: default
 ---
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
-      {%- endif -%}</p>
-  </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
+<section class="band band--dark" data-surface="dark">
+  <div class="container hero hero--meta stack stack--28">
+    <span class="accent-rule" aria-hidden="true"></span>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ '/insights/' | relative_url }}">Insights</a>
+      {%- if page.topic %}<span>{{ page.topic }}</span>{% endif %}
+    </nav>
+    <h1 class="t-article hero__title--article">{{ page.title }}</h1>
+    <div class="hero__meta--article">
+      <dl class="meta-row meta-row--3">
+        <div class="meta-row__item">
+          <dt class="label">Published</dt>
+          <dd class="meta-row__value"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time></dd>
+        </div>
+        {%- if page.reading_minutes %}
+        <div class="meta-row__item">
+          <dt class="label">Reading time</dt>
+          <dd class="meta-row__value">{{ page.reading_minutes }} minutes</dd>
+        </div>
+        {%- endif %}
+        <div class="meta-row__item">
+          <dt class="label">By</dt>
+          <dd class="meta-row__value">{{ page.byline | default: "Sindorin" }}</dd>
+        </div>
+      </dl>
+    </div>
   </div>
+</section>
 
-  {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
-  {%- endif -%}
+<div class="band band--white">
+  <article class="container article">
+    <div class="article__gutter"></div>
+    <div class="article__body">
+      <div class="prose stack stack--24">
+        {{ content }}
+      </div>
+      <div class="article-cta">
+        <p class="article-cta__text">{{ page.end_cta | default: "If you are weighing a decision like this, tell us about it. We will arrange a short call to see whether a Decision Sprint would help." }}</p>
+        {% include button.html variant="secondary" href="/contact/" label="Start an enquiry" %}
+      </div>
+    </div>
+  </article>
+</div>
 
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-</article>
+<section class="band band--paper" data-surface="paper">
+  <div class="container related stack stack--32">
+    <div class="head-row head-row--tight">
+      <h2 class="t-h2">More insights</h2>
+      {% include button.html variant="ghost" href="/insights/" label="All insights" %}
+    </div>
+    <div class="post-grid">
+      {%- assign shown = 0 %}
+      {%- for post in site.posts %}
+      {%- if post.url != page.url and shown < 3 %}
+      {% include post-card.html post=post %}
+      {%- assign shown = shown | plus: 1 %}
+      {%- endif %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,87 @@
+---
+layout: page
+title: Deliver
+nav: what
+breadcrumb_parent: { label: What we do, url: /#what-we-do }
+headline: Senior leadership to turn agreed plans into measurable progress.
+lead: For leaders whose direction is clear, but whose progress is held back by competing priorities, unclear ownership or a gap in leadership.
+description: Senior leadership or delivery oversight through a defined mandate, working alongside your team and partners.
+meta:
+  - { label: Starting point, value: [A clear direction] }
+  - { label: Role, value: ["Advise, oversee or lead", agreed explicitly] }
+  - { label: Period, value: [An initial period, with review points] }
+  - { label: Fee, value: [Fixed-fee phase or, defined monthly arrangement] }
+cta_title: What outcome do you need to deliver?
+cta_body: Tell us where progress is blocked and the leadership support you are missing. We will arrange a short call to confirm fit, responsibilities, capacity and timing.
+roles:
+  - { kicker: Advise, title: Independent executive advice, body: "An experienced outside perspective on the decisions that matter. You retain day-to-day delivery leadership." }
+  - { kicker: Oversee, title: Delivery oversight, body: "Senior oversight across your team and partners, with progress, risks and decisions reviewed with the sponsor." }
+  - { kicker: Lead, title: Direct or interim leadership, body: "Leadership of a defined workstream, or a fractional or interim technology leadership role, with agreed decision authority." }
+scope:
+  number: "02"
+  eyebrow: The work
+  title: Matched to the responsibility you need, not a fixed package.
+  text: We work alongside your team and agreed delivery partners for an initial period or delivery phase, with a clear decision at the end to complete, extend or hand over.
+  items:
+    - Translating the agreed direction into priorities, accountabilities and milestones
+    - Leading a defined transformation, technology or product workstream
+    - Coordinating your team and delivery partners within agreed authority
+    - Resolving or escalating decisions, risks and dependencies
+    - Reviewing progress, adoption and evidence of business value with the sponsor
+    - Strengthening internal ownership and handing over responsibilities
+  panel:
+    label: Typical needs
+    items:
+      - Leading a defined transformation or product initiative
+      - Independent executive advice and delivery oversight
+      - Resolving priorities and dependencies across teams and partners
+      - Fractional or interim technology leadership through a period of change
+    note: Direction still unresolved? Start with the <a href="/decision-sprint/">Decision Sprint</a>. Direction clear but no workable plan? <a href="/shape/">Shape</a> may fit better.
+outputs:
+  columns: [Output, What it covers]
+  first_width: minmax(140px, 240px)
+  rows:
+    - [Delivery plan, "Scope, priorities, owners, milestones and success measures."]
+    - [Progress reporting, "Concise progress, with a record of material decisions, risks and dependencies."]
+    - [Review points, "Updated priorities and recommendations, and a decision to complete, extend or hand over."]
+    - [Handover, "Progress, outstanding decisions, ongoing ownership and next actions."]
+terms:
+  fee_title: Fee and duration
+  fee:
+    - Agreed before work starts for the specific responsibilities, capacity and initial period. This may be a fixed-fee phase or a defined monthly arrangement, plus GST where applicable, with explicit review points and agreement before any extension.
+  excluded: [Software development, Detailed engineering, Managed services, Operational support, Round-the-clock availability]
+  excluded_note: Delivery is through your team and agreed partners. Fractional support does not imply full-time availability.
+  success:
+    - Progress against the agreed milestones, and a team better able to continue without us. Success is measured by delivery and business outcomes, not by the number of days supplied.
+---
+<section class="band band--paper" data-surface="paper">
+  <div class="container section stack stack--48">
+    {% include section-intro.html number="01" eyebrow="The mandate" title="We agree up front whether we are advising, overseeing or leading." text="These are different responsibilities, so they are never left implicit. Before accepting the role, we agree the authority, the time available, the working pattern and the review points." %}
+    {% include point-grid.html items=page.roles rule="strong" %}
+  </div>
+</section>
+
+<section class="band band--white">
+  <div class="container section">
+    {% include scope.html s=page.scope %}
+  </div>
+</section>
+
+<section class="band band--paper" data-surface="paper">
+  <div class="container section stack stack--40">
+    {% include section-intro.html number="03" eyebrow="What you receive" title="Active senior leadership, not another standalone report." text="The service is the leadership or oversight itself. It is supported by a small set of practical outputs, agreed at the start." %}
+    {% include data-table.html table=page.outputs %}
+  </div>
+</section>
+
+<section class="band band--white">
+  <div class="container section">
+    {% include terms.html terms=page.terms %}
+  </div>
+</section>
+
+<section class="band band--paper" data-surface="paper">
+  <div class="container section">
+    {% include other-services.html current="deliver" %}
+  </div>
+</section>

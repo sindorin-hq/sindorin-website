@@ -1,47 +1,15 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="{{ page.lang | default: site.lang | default: "en" }}">
-
-{%- include head.html -%}
-
-<body class="stretched">
-
-	<!-- Document Wrapper
-	============================================= -->
-	<div id="wrapper">
-
-		{%- include header.html -%}
-
-		{{ content }}
-
-		{%- include footer.html -%}
-
-	</div><!-- #wrapper end -->
-
-	<!-- Go To Top
-	============================================= -->
-	<div id="gotoTop" class="uil uil-angle-up"></div>
-
-	<!-- JavaScripts
-	============================================= -->
-	<script src="{{ "/assets/js/jquery.js" | relative_url }}"></script>
-	<script src="{{ "/assets/js/functions.js" | relative_url }}"></script>
-
-	<script>
-		jQuery(window).on( 'pluginCarouselReady', function(){
-			jQuery('#oc-features').owlCarousel({
-				items: 1,
-				margin: 60,
-			    nav: true,
-			    navText: ['<i class="bi-arrow-left"></i>','<i class="bi-arrow-right"></i>'],
-			    dots: false,
-			    stagePadding: 30,
-			    responsive:{
-					768: { items: 2 },
-					1200: { stagePadding: 200 }
-				},
-			});
-		});
-	</script>
-
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+{% include head.html %}
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include header.html %}
+  <main id="main">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  {%- for script in page.scripts %}
+  <script src="{{ script | relative_url }}" defer></script>
+  {%- endfor %}
 </body>
 </html>

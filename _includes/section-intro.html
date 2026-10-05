@@ -1,0 +1,10 @@
+{%- comment -%} Eyebrow and section heading at left, optional paragraph at right. Params: number, eyebrow, title, text {%- endcomment -%}
+<div class="intro-row">
+  <div class="intro-row__head stack stack--20">
+    {% include eyebrow.html number=include.number label=include.eyebrow %}
+    <h2 class="t-section">{{ include.title }}</h2>
+  </div>
+  {%- if include.text %}
+  <p class="intro-row__text t-body">{{ include.text }}</p>
+  {%- endif %}
+</div>

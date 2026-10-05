@@ -1,0 +1,10 @@
+{%- comment -%} Params: items (kicker, title, body), rule (phases|strong) {%- endcomment -%}
+<ul class="point-grid{% if include.rule == 'phases' %} point-grid--phases{% endif %}">
+  {%- for item in include.items %}
+  <li class="point">
+    {%- if item.kicker %}<span class="point__kicker">{{ item.kicker }}</span>{% endif %}
+    <span class="point__title">{{ item.title }}</span>
+    {%- if item.body %}<span class="point__body">{{ item.body }}</span>{% endif %}
+  </li>
+  {%- endfor %}
+</ul>

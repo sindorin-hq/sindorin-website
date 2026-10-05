@@ -1,0 +1,32 @@
+{%- comment -%} Fee, exclusions and success criteria. Params: terms {%- endcomment -%}
+{%- assign t = include.terms %}
+<div class="terms-grid">
+  <div class="stack stack--16">
+    <h2 class="t-h3">{{ t.fee_title }}</h2>
+    {%- if t.key_figure %}
+    <div class="key-figure">
+      <span class="key-figure__label">{{ t.key_figure.label }}</span>
+      <span class="key-figure__value">{{ t.key_figure.value }}</span>
+      <span class="key-figure__caption">{{ t.key_figure.caption }}</span>
+    </div>
+    {%- endif %}
+    {%- for p in t.fee %}
+    <p class="t-body">{{ p }}</p>
+    {%- endfor %}
+  </div>
+  <div class="stack stack--16">
+    <h2 class="t-h3">Not included</h2>
+    <ul class="plain-list">
+      {%- for item in t.excluded %}
+      <li>{{ item }}</li>
+      {%- endfor %}
+    </ul>
+    <p class="t-note">{{ t.excluded_note | default: "Any subsequent work is scoped separately." }}</p>
+  </div>
+  <div class="stack stack--16">
+    <h2 class="t-h3">What success looks like</h2>
+    {%- for p in t.success %}
+    <p class="t-body">{{ p }}</p>
+    {%- endfor %}
+  </div>
+</div>

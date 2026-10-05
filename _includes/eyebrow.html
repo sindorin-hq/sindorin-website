@@ -1,0 +1,2 @@
+{%- comment -%} Params: label, number (optional), tone (muted) {%- endcomment -%}
+<p class="eyebrow{% if include.tone == 'muted' %} eyebrow--muted{% endif %}">{% if include.number %}<span>{{ include.number }}</span>{% endif %}<span>{{ include.label }}</span></p>
