@@ -2,7 +2,7 @@
 
 The Sindorin website, built with [Jekyll](https://jekyllrb.com/) 4.4.
 
-## Set up Jekyll in WSL (Ubuntu 24.04)
+## Set up Jekyll in WSL (Ubuntu 24.04 or later)
 
 You only need to do this once.
 
