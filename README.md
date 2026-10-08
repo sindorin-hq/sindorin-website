@@ -65,6 +65,18 @@ Google Analytics is only included when `JEKYLL_ENV=production`, so local preview
 
 Restart `jekyll serve` after changing `_config.yml`, because it isn't reloaded automatically.
 
+## Enquiry form
+
+The form submits to `https://do.sindorin.com/enquiry`, configured under `enquiry.action` in `_config.yml`. The Cloudflare Worker lives in `~/git/sindorin-workers`; see that repository's README for email variables, the Forward Email API secret, local development and deployment.
+
+Deploy the Worker, configure its API secret and connect `do.sindorin.com` before publishing these site changes. The browser displays the inline thank-you only when the Worker confirms Forward Email accepted the message. A failed submission keeps the form available and shows the direct email fallback. Without JavaScript, the Worker returns an HTML confirmation/error page.
+
+Run the form's client regression tests with Node.js 22 or later:
+
+```bash
+node --test tests/contact.test.cjs
+```
+
 ## Troubleshooting
 
 **Changes aren't picked up.** Keep the repository in the Linux file system (for example `~/git/...`), not under `/mnt/c/...`. File watching doesn't work reliably across the Windows mount. If you must work from `/mnt/c`, add `--force_polling` to `jekyll serve`.

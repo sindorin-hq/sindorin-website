@@ -20,31 +20,27 @@ steps:
   <div class="container contact-body">
     <div class="contact-form-panel">
       <form class="contact-form" action="{{ site.enquiry.action }}" method="post" novalidate data-enquiry-form>
-        <input type="hidden" name="publicid" value="{{ site.enquiry.publicid }}">
-        <input type="hidden" name="leadsource" value="Website">
-        <input type="hidden" name="firstname" value="">
-        <input type="hidden" name="lastname" value="">
         <h2 class="t-h3">Your enquiry</h2>
         <label class="field">
           <span class="field__label">Name</span>
-          <input class="field__input" type="text" name="fullname" autocomplete="name" required>
+          <input class="field__input" type="text" name="fullname" autocomplete="name" maxlength="200" required>
           <span class="field__hint" data-hint="fullname" aria-live="polite"></span>
         </label>
         <div class="field-row">
           <label class="field">
             <span class="field__label">Email</span>
-            <input class="field__input" type="email" name="email" autocomplete="email" required>
+            <input class="field__input" type="email" name="email" autocomplete="email" maxlength="254" required>
             <span class="field__hint" data-hint="email" aria-live="polite"></span>
           </label>
           <label class="field">
             <span class="field__label">Phone</span>
-            <input class="field__input" type="tel" name="phone" autocomplete="tel">
+            <input class="field__input" type="tel" name="phone" autocomplete="tel" maxlength="100">
             <span class="field__hint">Optional</span>
           </label>
         </div>
         <label class="field">
           <span class="field__label">The decision you’re facing</span>
-          <textarea class="field__input" name="description" rows="6" required placeholder="For example: whether to replace our maintenance planning system, or fix the data behind the one we have."></textarea>
+          <textarea class="field__input" name="description" rows="6" maxlength="10000" required placeholder="For example: whether to replace our maintenance planning system, or fix the data behind the one we have."></textarea>
           <span class="field__hint" data-hint="description" data-default="A few lines is enough." aria-live="polite">A few lines is enough.</span>
         </label>
         <input type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>

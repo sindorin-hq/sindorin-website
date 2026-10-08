@@ -1,7 +1,6 @@
 /*
-  Enquiry form: client-side validation, name split for vtiger, inline thank-you.
-  vtiger's response can't be read cross-origin, so the POST is sent no-cors and only a
-  network error counts as failure. Without JS the form posts straight to vtiger.
+  Enquiry form: client-side validation and an inline thank-you after the Worker
+  confirms the email was accepted. Without JS the Worker returns a confirmation page.
 */
 (function () {
   'use strict';
@@ -43,19 +42,18 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    if (submit.disabled) return;
     tried = true;
     var errs = showHints();
     var firstInvalid = Object.keys(MESSAGES).filter(function (n) { return errs[n]; })[0];
     if (firstInvalid) { form.elements[firstInvalid].focus(); return; }
 
-    var parts = value('fullname').split(/\s+/);
-    var first = parts[0];
-    form.elements.firstname.value = first;
-    form.elements.lastname.value = parts.slice(1).join(' ') || first;
+    var first = value('fullname').split(/\s+/)[0];
+    var replyEmail = value('email');
 
     var done = function () {
       thanks.querySelector('[data-first-name]').textContent = first;
-      thanks.querySelector('[data-reply-email]').textContent = value('email');
+      thanks.querySelector('[data-reply-email]').textContent = replyEmail;
       form.hidden = true;
       thanks.hidden = false;
       thanks.focus();
@@ -66,8 +64,16 @@
 
     errorBox.hidden = true;
     submit.disabled = true;
-    fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
-      .then(done, function () { errorBox.hidden = false; })
+    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, mode: 'cors' })
+      .then(function (response) {
+        if (!response.ok) throw new Error('Enquiry submission failed.');
+        return response.json();
+      })
+      .then(function (result) {
+        if (result.ok !== true) throw new Error('Enquiry submission was not confirmed.');
+        done();
+      })
+      .catch(function () { errorBox.hidden = false; })
       .then(function () { submit.disabled = false; });
   });
 

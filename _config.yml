@@ -16,10 +16,9 @@ url: "https://www.sindorin.com"
 baseurl: ""
 google_analytics: G-FC7KSLMEJE
 
-# Enquiry form (vtiger webform)
+# Enquiry form (Cloudflare Worker in ../sindorin-workers)
 enquiry:
-  action: https://sindorin.od2.vtiger.com/modules/Webforms/capture.php
-  publicid: 48badca9f7f2cc28987a0a378a4aba40
+  action: https://do.sindorin.com/enquiry
 
 permalink: /insights/:title/
 
@@ -37,6 +36,7 @@ defaults:
 
 exclude:
   - README.md
+  - tests/
   - Gemfile
   - Gemfile.lock
   - vendor/
