@@ -6,13 +6,17 @@
   'use strict';
   var form = document.querySelector('[data-enquiry-form]');
   if (!form) return;
+  if (typeof fetch !== 'function' || typeof FormData !== 'function' || typeof AbortController !== 'function') return;
   var thanks = document.querySelector('[data-enquiry-thanks]');
   var errorBox = form.querySelector('[data-form-error]');
+  var errorMessage = form.querySelector('[data-form-error-message]');
   var submit = form.querySelector('button[type="submit"]');
-  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var EMAIL = /^[^\s@<>(),;:\\"\[\]]+@[^\s@<>(),;:\\"\[\]]+\.[^\s@<>(),;:\\"\[\]]+$/;
+  var CONTROL = /[\u0000-\u001f\u007f]/;
   var MESSAGES = {
     fullname: 'Please enter your name.',
     email: 'Please enter an email address we can reply to.',
+    phone: 'Please enter a valid phone number.',
     description: 'Please describe the decision in a few lines.'
   };
   var tried = false;
@@ -21,9 +25,10 @@
 
   function errors() {
     return {
-      fullname: !value('fullname'),
-      email: !EMAIL.test(value('email')),
-      description: !value('description')
+      fullname: !value('fullname') || value('fullname').length > 200 || CONTROL.test(value('fullname')),
+      email: !EMAIL.test(value('email')) || value('email').length > 254 || CONTROL.test(value('email')),
+      phone: value('phone').length > 100 || CONTROL.test(value('phone')),
+      description: !value('description') || value('description').length > 10000 || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(value('description'))
     };
   }
 
@@ -64,17 +69,24 @@
 
     errorBox.hidden = true;
     submit.disabled = true;
-    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, mode: 'cors' })
+    var controller = new AbortController();
+    var timeout = setTimeout(function () { controller.abort(); }, 15000);
+    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, mode: 'cors', signal: controller.signal })
       .then(function (response) {
-        if (!response.ok) throw new Error('Enquiry submission failed.');
-        return response.json();
+        return response.json().then(function (result) {
+          if (!response.ok || !result || result.ok !== true) {
+            var error = new Error('Enquiry submission was not confirmed.');
+            error.userMessage = result && typeof result.error === 'string' ? result.error : '';
+            throw error;
+          }
+          done();
+        });
       })
-      .then(function (result) {
-        if (result.ok !== true) throw new Error('Enquiry submission was not confirmed.');
-        done();
+      .catch(function (error) {
+        errorMessage.textContent = error.userMessage || 'We could not confirm your enquiry was sent. Please try again.';
+        errorBox.hidden = false;
       })
-      .catch(function () { errorBox.hidden = false; })
-      .then(function () { submit.disabled = false; });
+      .finally(function () { clearTimeout(timeout); submit.disabled = false; });
   });
 
   thanks.setAttribute('tabindex', '-1');
@@ -86,4 +98,6 @@
     form.hidden = false;
     form.elements.fullname.focus();
   });
+  // Keep native validation when JavaScript is unavailable; show our inline hints when it is active.
+  form.noValidate = true;
 })();

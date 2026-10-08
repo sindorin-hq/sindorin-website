@@ -19,7 +19,11 @@ steps:
 <section class="band band--white">
   <div class="container contact-body">
     <div class="contact-form-panel">
-      <form class="contact-form" action="{{ site.enquiry.action }}" method="post" novalidate data-enquiry-form>
+      {%- assign enquiry_action = site.enquiry.action %}
+      {%- if jekyll.environment == 'production' %}
+        {%- assign enquiry_action = site.enquiry.production_action %}
+      {%- endif %}
+      <form class="contact-form" action="{{ enquiry_action | escape }}" method="post" enctype="multipart/form-data" data-enquiry-form>
         <h2 class="t-h3">Your enquiry</h2>
         <label class="field">
           <span class="field__label">Name</span>
@@ -35,7 +39,7 @@ steps:
           <label class="field">
             <span class="field__label">Phone</span>
             <input class="field__input" type="tel" name="phone" autocomplete="tel" maxlength="100">
-            <span class="field__hint">Optional</span>
+            <span class="field__hint" data-hint="phone" data-default="Optional" aria-live="polite">Optional</span>
           </label>
         </div>
         <label class="field">
@@ -48,7 +52,7 @@ steps:
           <button class="btn btn--primary" type="submit">Send enquiry</button>
           <span class="t-meta">We use your details only to reply to this enquiry.</span>
         </div>
-        <p class="field__hint" data-form-error role="alert" hidden>Something went wrong. Please email <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+        <p class="field__hint" data-form-error role="alert" hidden><span data-form-error-message></span> You can also email <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
       </form>
 
       <div class="form-thanks" role="status" data-enquiry-thanks hidden>

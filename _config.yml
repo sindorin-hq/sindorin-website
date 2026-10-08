@@ -16,9 +16,11 @@ url: "https://www.sindorin.com"
 baseurl: ""
 google_analytics: G-FC7KSLMEJE
 
-# Enquiry form (Cloudflare Worker in ../sindorin-workers)
+# Enquiry form (Cloudflare Worker in ../sindorin-workers).
+# JEKYLL_ENV=production selects production_action; all other builds use action.
 enquiry:
-  action: https://do.sindorin.com/enquiry
+  action: http://localhost:8787/enquiry
+  production_action: https://do.sindorin.com/enquiry
 
 permalink: /insights/:title/
 
@@ -36,6 +38,7 @@ defaults:
 
 exclude:
   - README.md
+  - "*.code-workspace"
   - tests/
   - Gemfile
   - Gemfile.lock

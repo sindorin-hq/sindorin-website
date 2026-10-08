@@ -39,7 +39,7 @@ gem install bundler -v 2.5.1
 From the repository folder:
 
 ```bash
-cd ~/git/com.sindorin.www
+cd ~/git/sindorin-website
 bundle install
 ```
 
@@ -61,15 +61,39 @@ Build the site once, without a server, into `_site/`:
 JEKYLL_ENV=production bundle exec jekyll build
 ```
 
-Google Analytics is only included when `JEKYLL_ENV=production`, so local previews don't send analytics.
+`JEKYLL_ENV=production` is the production flag: it selects the live enquiry Worker and includes Google Analytics. Default development builds use the local Worker and omit analytics. Set this flag in the deployment environment when publishing the site.
 
 Restart `jekyll serve` after changing `_config.yml`, because it isn't reloaded automatically.
 
 ## Enquiry form
 
-The form submits to `https://do.sindorin.com/enquiry`, configured under `enquiry.action` in `_config.yml`. The Cloudflare Worker lives in `~/git/sindorin-workers`; see that repository's README for email variables, the Forward Email API secret, local development and deployment.
+The form endpoint is selected at build time using `JEKYLL_ENV`:
 
-Deploy the Worker, configure its API secret and connect `do.sindorin.com` before publishing these site changes. The browser displays the inline thank-you only when the Worker confirms Forward Email accepted the message. A failed submission keeps the form available and shows the direct email fallback. Without JavaScript, the Worker returns an HTML confirmation/error page.
+| Build | Form endpoint | Configuration in `_config.yml` |
+|---|---|---|
+| Default / development | `http://localhost:8787/enquiry` | `enquiry.action` |
+| `JEKYLL_ENV=production` | `https://do.sindorin.com/enquiry` | `enquiry.production_action` |
+
+JavaScript and native form submissions both use this endpoint. The Cloudflare Worker lives in `~/git/sindorin-workers`; see that repository's README for email variables, the Forward Email API secret, local development and deployment.
+
+Deploy the Worker, configure its API secret and connect `do.sindorin.com` before publishing these site changes. The browser displays the inline thank-you only when the Worker confirms Forward Email accepted the message. A failed submission keeps the entered details available, displays the Worker's error when available and shows the direct email fallback. Requests time out after 15 seconds so visitors can retry. Without JavaScript, the browser validates required fields and email format, then the Worker returns an HTML confirmation/error page. Both paths submit multipart form data.
+
+For a local preview, run the Worker using its README's local settings (which allow `http://localhost:4000` and `http://127.0.0.1:4000`), then start the site with the default development environment:
+
+```bash
+bundle exec jekyll serve
+```
+
+Check the production domain without sending an email:
+
+```bash
+curl -i -X OPTIONS https://do.sindorin.com/enquiry \
+  -H 'Origin: https://www.sindorin.com' \
+  -H 'Access-Control-Request-Method: POST' \
+  -H 'Access-Control-Request-Headers: Content-Type, Accept'
+```
+
+Expect `204` and `Access-Control-Allow-Origin: https://www.sindorin.com`. Repeat with `https://sindorin.com` to check the second allowed origin. This confirms routing and CORS; delivery also requires the Worker's email secret and verified sender configuration.
 
 Run the form's client regression tests with Node.js 22 or later:
 
